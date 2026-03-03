@@ -1,9 +1,8 @@
 package jay.chess.gui;
 
 import jay.chess.engine.ChessEngine;
-import jay.chess.gui.board.ChessAttackInfo;
+import jay.chess.engine.ChessMovementInfo;
 import jay.chess.gui.board.ChessBoardJPanel;
-import jay.chess.gui.board.ChessTileActionListener;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -34,7 +33,7 @@ public class ChessJFrame extends JFrame implements PropertyChangeListener  {
     public void propertyChange(PropertyChangeEvent evt) {
         if(evt.getPropertyName().compareToIgnoreCase("Move") == 0) {
 //            System.out.println("Property " + evt.getPropertyName() + " Changed");
-            if(evt.getNewValue() instanceof ChessAttackInfo info) {
+            if(evt.getNewValue() instanceof ChessMovementInfo info) {
                 System.out.println("Attacking");
                 boolean ableToMove = engine.move(info.attacker, info.defender);
                 System.out.println("Last able to move " + ableToMove);

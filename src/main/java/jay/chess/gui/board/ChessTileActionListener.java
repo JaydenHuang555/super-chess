@@ -1,14 +1,13 @@
 package jay.chess.gui.board;
 
 import jay.chess.engine.ChessAlliance;
+import jay.chess.engine.ChessMovementInfo;
 import jay.chess.engine.ChessTile;
 import jay.chess.engine.piece.ChessPiece;
 import jay.util.Board2d;
-import jay.util.Pair;
 import jay.util.math.geom.Translation2d;
 import jay.util.swing.EmptyComponent;
 
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeListener;
@@ -71,14 +70,14 @@ public class ChessTileActionListener implements ActionListener  {
                     m_lastSelectedPiece = Optional.of(input);
                 }
                 else {
-                    ChessAttackInfo info = new ChessAttackInfo();
+                    ChessMovementInfo info = new ChessMovementInfo();
                     info.attacker = m_lastSelectedPiece.get().getTranslation();
                     info.defender = input.getTranslation();
                     move(info);
                 }
             }
             else {
-                ChessAttackInfo info = new ChessAttackInfo();
+                ChessMovementInfo info = new ChessMovementInfo();
                 info.attacker = m_lastSelectedPiece.get().getTranslation();
                 info.defender = input.getTranslation();
                 move(info);
@@ -86,7 +85,7 @@ public class ChessTileActionListener implements ActionListener  {
         }
     }
 
-    public void move(ChessAttackInfo info) {
+    public void move(ChessMovementInfo info) {
         propertyChangingComponent.fireObjectPropertyChange(PROPERTY_WANT_MOVE, null, info);
     }
 
