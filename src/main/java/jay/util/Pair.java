@@ -1,6 +1,7 @@
 package jay.util;
 
 import java.util.Objects;
+import java.util.function.Consumer;
 
 /**
  * Represents a pair of two objects.
@@ -9,8 +10,8 @@ import java.util.Objects;
  * @param <B> The second object's type.
  */
 public class Pair<A, B> {
-    private final A m_first;
-    private final B m_second;
+    protected final A m_first;
+    protected final B m_second;
 
     /**
      * Constructs a pair.
@@ -77,5 +78,6 @@ public class Pair<A, B> {
     public int hashCode() {
         return Objects.hash(m_first, m_second);
     }
+
 }
 

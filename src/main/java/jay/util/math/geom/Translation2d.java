@@ -1,6 +1,10 @@
 package jay.util.math.geom;
 
+import jay.util.math.MathUtil;
+
 public class Translation2d {
+
+    public static final Translation2d ZERO = new Translation2d(0.0, 0.0);
 
     protected final double m_x;
     protected final double m_y;
@@ -8,6 +12,10 @@ public class Translation2d {
     public Translation2d(double x, double y) {
         this.m_x = x;
         this.m_y = y;
+    }
+
+    public Translation2d() {
+        this(0.0, 0.0);
     }
 
     public double norm() {
@@ -66,6 +74,13 @@ public class Translation2d {
     @Override
     public String toString() {
         return String.format("{X:%f, Y:%f}", m_x, m_y);
+    }
+
+    public final static Translation2d of(double x, double y) {
+        if(MathUtil.epsilonEquals(x, 0.0) && MathUtil.epsilonEquals(y, 0.0)) {
+            return Translation2d.ZERO;
+        }
+        return new Translation2d(x, y);
     }
 
 }

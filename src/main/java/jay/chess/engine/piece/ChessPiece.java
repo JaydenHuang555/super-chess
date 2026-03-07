@@ -47,8 +47,6 @@ public abstract class ChessPiece {
         );
     }
 
-
-
     public abstract boolean canMove(Board2d<ChessTile> board, Translation2d currentPoint, Translation2d desiredPoint, Optional<ChessPiece> defendingPiece);
 
     public String name() {
