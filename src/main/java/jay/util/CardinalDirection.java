@@ -1,5 +1,7 @@
 package jay.util;
 
+import jay.util.math.geom.Rotation2d;
+
 public enum CardinalDirection {
     NORTH,
     SOUTH,
@@ -9,4 +11,5 @@ public enum CardinalDirection {
     NORTHEAST,
     SOUTHWEST,
     SOUTHEAST
+
 }

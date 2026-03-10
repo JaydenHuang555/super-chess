@@ -3,7 +3,6 @@ package jay.chess.gui.board;
 import jay.chess.engine.ChessAlliance;
 import jay.chess.engine.ChessMovementInfo;
 import jay.chess.engine.ChessTile;
-import jay.chess.engine.piece.ChessPiece;
 import jay.util.Board2d;
 import jay.util.math.geom.Translation2d;
 import jay.util.swing.EmptyComponent;
@@ -18,12 +17,12 @@ public class ChessTileActionListener implements ActionListener  {
     private final Board2d<ChessTileJButton> m_buttonBoard;
     private ChessAlliance m_currentPlayingAlliance = ChessAlliance.WHITE;
     private Optional<ChessTileJButton> m_lastSelectedPiece = Optional.empty();
-    private final EmptyComponent propertyChangingComponent = new EmptyComponent();
+    private final EmptyComponent m_propertyChangingComponent = new EmptyComponent();
     private final static String PROPERTY_WANT_MOVE = "Move";
 
     public ChessTileActionListener(PropertyChangeListener listener, Board2d<ChessTileJButton> buttonBoard) {
         m_buttonBoard = buttonBoard;
-        propertyChangingComponent.addPropertyChangeListener(PROPERTY_WANT_MOVE, listener);
+        m_propertyChangingComponent.addPropertyChangeListener(PROPERTY_WANT_MOVE, listener);
     }
 
     public void syncAlliance(ChessAlliance alliance) {
@@ -53,6 +52,10 @@ public class ChessTileActionListener implements ActionListener  {
         return input.getPresentPieceNameOptional().get().getAlliance() == m_currentPlayingAlliance;
     }
 
+    public void move(Translation2d inputTranslation) {
+        move(new ChessMovementInfo(m_lastSelectedPiece.get().getM_translation(), inputTranslation));
+    }
+
     public void handlePieceSelection(ChessTileJButton input) {
         if(!hasSelectedPiece()) {
             if(input.getPresentPieceNameOptional().isPresent() && inputIsOnCurrentAlliance(input)) {
@@ -65,34 +68,27 @@ public class ChessTileActionListener implements ActionListener  {
 
         else {
             if(input.getPresentPieceNameOptional().isPresent()) {
-                ChessPiece inputPiece = input.getPresentPieceNameOptional().get();
                 if(inputIsOnCurrentAlliance(input)) {
                     m_lastSelectedPiece = Optional.of(input);
                 }
                 else {
-                    ChessMovementInfo info = new ChessMovementInfo();
-                    info.attacker = m_lastSelectedPiece.get().getTranslation();
-                    info.defender = input.getTranslation();
-                    move(info);
+                    move(input.getM_translation());
                 }
             }
             else {
-                ChessMovementInfo info = new ChessMovementInfo();
-                info.attacker = m_lastSelectedPiece.get().getTranslation();
-                info.defender = input.getTranslation();
-                move(info);
+                move(input.getM_translation());
             }
         }
     }
 
     public void move(ChessMovementInfo info) {
-        propertyChangingComponent.fireObjectPropertyChange(PROPERTY_WANT_MOVE, null, info);
+        m_propertyChangingComponent.fireObjectPropertyChange(PROPERTY_WANT_MOVE, null, info);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() instanceof ChessTileJButton button) {
-            Translation2d translation = button.getTranslation();
+            Translation2d translation = button.getM_translation();
             System.out.println("Selected " + button.getPresentPieceNameOptional() +  " at " +  translation);
             handlePieceSelection(button);
         }

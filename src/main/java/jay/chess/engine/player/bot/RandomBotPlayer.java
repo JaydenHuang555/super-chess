@@ -1,6 +1,5 @@
 package jay.chess.engine.player.bot;
 
-import jay.chess.engine.ChessAlliance;
 import jay.chess.engine.ChessMovementInfo;
 import jay.chess.engine.ChessTile;
 import jay.chess.engine.piece.ChessPiece;
@@ -48,8 +47,8 @@ public class RandomBotPlayer extends BotPlayer {
             Translation2d next = new Translation2d(x, y);
             if(chosen.getSecond().canMove(board, chosen.getFirst(), next, board.get(next).piece)) {
                 ChessMovementInfo info = new ChessMovementInfo();
-                info.attacker = chosen.getFirst();
-                info.defender = next;
+                info.m_attacker = chosen.getFirst();
+                info.m_defender = next;
                 return info;
             }
         }

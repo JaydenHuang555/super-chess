@@ -4,6 +4,11 @@ import jay.util.math.MathUtil;
 
 public class Rotation2d {
 
+    public static final Rotation2d ZERO = new Rotation2d(0.0);
+    public static final Rotation2d CCLD90 = new Rotation2d(Math.PI / 2.0);
+    public static final Rotation2d CCD90 = new Rotation2d(-Math.PI / 2.0);
+    public static final Rotation2d PI = new Rotation2d(Math.PI);
+
     private final double m_value;
     private final double m_cos, m_sin;
 
@@ -15,6 +20,10 @@ public class Rotation2d {
 
     public static Rotation2d fromDegrees(double degrees) {
         return new Rotation2d(degrees * (180.0/Math.PI));
+    }
+
+    public static Rotation2d fromRadians(double radians) {
+        return new Rotation2d(radians);
     }
 
     public double get() {

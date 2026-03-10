@@ -8,7 +8,6 @@ import jay.chess.engine.starting.ChessStartingConfiguration;
 import jay.chess.engine.starting.ClassicalChessStartingConfiguration;
 import jay.util.Board2d;
 import jay.util.CyclingPair;
-import jay.util.Pair;
 import jay.util.math.geom.Translation2d;
 
 import java.util.Optional;
@@ -56,7 +55,7 @@ public class ChessEngine {
         System.out.println(playing.getName() + " playing");
         while(true) {
             ChessMovementInfo info = playing.play(board);
-            if(move(playing.getAlliance(), info.attacker, info.defender)) {
+            if(move(playing.getAlliance(), info.m_attacker, info.m_defender)) {
                 System.out.println("moved");
                 break;
             }
