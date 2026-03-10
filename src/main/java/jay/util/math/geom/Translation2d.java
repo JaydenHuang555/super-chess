@@ -2,6 +2,9 @@ package jay.util.math.geom;
 
 import jay.util.math.MathUtil;
 
+import javax.management.relation.RelationNotification;
+import java.util.Random;
+
 public class Translation2d {
 
     public static final Translation2d ZERO = new Translation2d(0.0, 0.0);
@@ -81,6 +84,34 @@ public class Translation2d {
             return Translation2d.ZERO;
         }
         return new Translation2d(x, y);
+    }
+
+    public static Translation2d from(Random random, double minX, double maxX, double minY, double maxY) {
+        double x = random.nextDouble(minX, maxX);
+        double y = random.nextDouble(minY, maxY);
+        return new Translation2d(x, y);
+    }
+
+    public static Translation2d from(Random random, Translation2d min, Translation2d max) {
+        return from(random, min.getX(), max.getX(), min.getY(), max.getY());
+    }
+
+    public static Translation2d from(Random random, double maxXMagnitude, double maxYMagnitude) {
+        return from(random, -maxXMagnitude, maxXMagnitude, -maxYMagnitude, maxYMagnitude);
+    }
+
+    public static Translation2d fromInt(Random random, int minX, int maxX, int minY, int maxY) {
+        double x = random.nextInt(minX, maxX);
+        double y = random.nextInt(minY, maxY);
+        return new Translation2d(x, y);
+    }
+
+    public static Translation2d fromInt(Random random, Translation2d min, Translation2d max) {
+        return from(random, Math.round(min.getX()), Math.round(max.getX()), Math.round(min.getY()), Math.round(max.getY()));
+    }
+
+    public static Translation2d fromInt(Random random, double maxXMagnitude, double maxYMagnitude) {
+        return from(random, -maxXMagnitude, maxXMagnitude, -maxYMagnitude, maxYMagnitude);
     }
 
 }

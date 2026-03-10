@@ -32,6 +32,20 @@ public  class MathUtil {
         return v > min && v < max;
     }
 
+    /**
+     * Checks if the given input is within the range (min, max), both exclusive.
+     */
+    public static boolean inRange(int v, int min, int max) {
+        return v > min && v < max;
+    }
+
+    /**
+     * Checks if the given input is within the range (min, max), both exclusive.
+     */
+    public static boolean inRange(long v, long min, long max) {
+        return v > min && v < max;
+    }
+
     public static boolean epsilonEquals(double a, double b, double epsilon) {
         return (a - epsilon <= b) && (a + epsilon >= b);
     }

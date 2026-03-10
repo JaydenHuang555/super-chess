@@ -17,4 +17,11 @@ public enum ChessAlliance {
         return this == WHITE;
     }
 
+    public ChessAlliance getOpposingAlliance() {
+        return switch(this) {
+            case BLACK -> WHITE;
+            case WHITE -> BLACK;
+        };
+    }
+
 }

@@ -51,7 +51,7 @@ public class ChessEngine {
     }
 
     public void play() {
-        Player playing = players.getFirst();
+        Player playing = players.cycle();
         System.out.println(playing.getName() + " playing");
         while(true) {
             ChessMovementInfo info = playing.play(board);

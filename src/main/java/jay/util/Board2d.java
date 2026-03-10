@@ -1,6 +1,6 @@
 package jay.util;
 
-import jay.util.math.geom.Line2d;
+import jay.util.math.MathUtil;
 import jay.util.math.geom.Translation2d;
 
 import java.util.ArrayList;
@@ -82,6 +82,16 @@ public class Board2d<Tile> implements  Iterable<Tile> {
 
     public Tile get(Translation2d translation) {
         return get((int)translation.getX(), (int)translation.getY());
+    }
+
+    public boolean containsTranslation(int x, int y) {
+        boolean xCheck = MathUtil.inRange(x, 0, width);
+        boolean yCheck = MathUtil.inRange(y, 0, height);
+        return xCheck && yCheck;
+    }
+
+    public boolean containsTranslation(Translation2d translation) {
+        return containsTranslation((int)translation.getX(), (int)translation.getY());
     }
 
     public Optional<List<CardinalDirection>> blockedByBoard(Translation2d translation) {
