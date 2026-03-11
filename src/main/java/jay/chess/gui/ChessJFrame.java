@@ -2,9 +2,9 @@ package jay.chess.gui;
 
 import jay.chess.engine.ChessAlliance;
 import jay.chess.engine.ChessEngine;
-import jay.chess.engine.player.bot.RandomBotPlayer;
+import jay.chess.engine.player.bot.RandomClassicBotPlayer;
 import jay.chess.gui.board.ChessBoardJPanel;
-import jay.chess.gui.player.ChessSwingPlayer;
+import jay.chess.gui.player.ChessSwingClassicPlayer;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -15,7 +15,7 @@ public class ChessJFrame extends JFrame   {
     private final ChessEngine m_engine;
     private final Timer m_displayingThread;
     private final Thread m_playingThread;
-    private final ChessSwingPlayer m_player = new ChessSwingPlayer("test");
+    private final ChessSwingClassicPlayer m_player = new ChessSwingClassicPlayer("test");
 
     public ChessJFrame() {
         m_engine = new ChessEngine();
@@ -35,7 +35,7 @@ public class ChessJFrame extends JFrame   {
     }
 
     public void resetEngine() {
-        m_engine.setPlayer(m_player, new RandomBotPlayer("bot"));
+        m_engine.setPlayer(m_player, new RandomClassicBotPlayer("bot"));
         m_engine.reset();
     }
 

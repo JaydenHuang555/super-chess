@@ -10,9 +10,9 @@ import jay.util.math.geom.Translation2d;
 import java.util.Random;
 import java.util.function.Function;
 
-public class RandomBotPlayer extends BotPlayer {
+public class RandomClassicBotPlayer extends ClassicBotPlayer {
 
-    public RandomBotPlayer(String name) {
+    public RandomClassicBotPlayer(String name) {
         super(name);
     }
 

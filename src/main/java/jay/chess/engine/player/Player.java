@@ -6,34 +6,17 @@ import jay.chess.engine.ChessTile;
 import jay.util.Board2d;
 import jay.util.math.geom.Translation2d;
 
-public abstract class Player {
+public interface Player {
 
-    private ChessAlliance m_alliance;
-    private String m_name;
+    public void reset();
 
-    public Player(String name) {
-        m_name = name;
-    }
-
-    public void reset() {
-
-    }
-
-    public void end() {
-
-    }
+    public void end();
 
     public abstract ChessMovementInfo play(Board2d<ChessTile> board);
 
-    public String getName() {
-        return m_name;
-    }
+    public String getName();
 
-    public void setAlliance(ChessAlliance alliance) {
-        m_alliance = alliance;
-    }
+    public void setAlliance(ChessAlliance alliance);
 
-    public ChessAlliance getAlliance() {
-        return m_alliance;
-    }
+    public ChessAlliance getAlliance();
 }
