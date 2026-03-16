@@ -23,8 +23,6 @@ public class KnightChessPiece extends ChessPiece{
         currentPoint = whiteOriginBased(board, currentPoint);
         desiredPoint = whiteOriginBased(board, desiredPoint);
         Translation2d delta = desiredPoint.minus(currentPoint).round();
-        System.out.println("DT " + delta);
-        System.out.println("Curr " + currentPoint);
 
         if(Math.abs(delta.getX()) == 1 && Math.abs(delta.getY()) == 2) {
             return true;

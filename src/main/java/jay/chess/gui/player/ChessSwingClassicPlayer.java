@@ -2,7 +2,7 @@ package jay.chess.gui.player;
 
 import jay.chess.engine.ChessMovementInfo;
 import jay.chess.engine.ChessTile;
-import jay.chess.engine.player.Player;
+import jay.chess.engine.player.ClassicPlayer;
 import jay.util.Board2d;
 
 import java.beans.PropertyChangeEvent;
@@ -10,14 +10,14 @@ import java.beans.PropertyChangeListener;
 import java.util.Optional;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-public class ChessSwingPlayer extends Player implements PropertyChangeListener {
+public class ChessSwingClassicPlayer extends ClassicPlayer implements PropertyChangeListener {
 
     public static final String PROPERTY_DESIRE_MOVE = "Move";
 
     private AtomicBoolean m_readyToPlay = new AtomicBoolean(false);
     private Optional<ChessMovementInfo> m_infoOptional = Optional.empty();
 
-    public ChessSwingPlayer(String name) {
+    public ChessSwingClassicPlayer(String name) {
         super(name);
     }
 
@@ -33,7 +33,6 @@ public class ChessSwingPlayer extends Player implements PropertyChangeListener {
         if(m_infoOptional.isPresent()) {
             ChessMovementInfo infoToReturn = m_infoOptional.get();
             reset();
-            System.out.println("returned value");
             return infoToReturn;
         }
         else {
@@ -43,7 +42,6 @@ public class ChessSwingPlayer extends Player implements PropertyChangeListener {
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
-        System.out.println("PROPERTY CHANGED " + evt.getPropertyName());
         if(evt.getPropertyName().compareToIgnoreCase(PROPERTY_DESIRE_MOVE) == 0) {
             if(evt.getNewValue() instanceof ChessMovementInfo info) {
                 m_infoOptional = Optional.of(info);

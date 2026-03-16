@@ -10,9 +10,9 @@ import jay.util.math.geom.Translation2d;
 import java.util.Random;
 import java.util.function.Function;
 
-public class RandomBotPlayer extends BotPlayer {
+public class RandomClassicBotPlayer extends ClassicBotPlayer {
 
-    public RandomBotPlayer(String name) {
+    public RandomClassicBotPlayer(String name) {
         super(name);
     }
 
@@ -26,11 +26,11 @@ public class RandomBotPlayer extends BotPlayer {
 
             ChessTile tile = board.get(translation);
 
-            if(tile.piece.isEmpty()) {
+            if(tile.m_piece.isEmpty()) {
                 return acceptEmpty;
             }
 
-            ChessPiece piece = tile.piece.get();
+            ChessPiece piece = tile.m_piece.get();
             return piece.getAlliance() == legalAlliance;
         };
 
@@ -46,12 +46,11 @@ public class RandomBotPlayer extends BotPlayer {
 
     @Override
     public ChessMovementInfo play(Board2d<ChessTile> board) {
-        Random next = new Random(board.getArea());
 
-        Translation2d baseTranslation = getLegalTranslation(board, getAlliance(), false);
-        Translation2d attackTranslation = getLegalTranslation(board, getAlliance().getOpposingAlliance(), true);
+        Translation2d attackTranslation = getLegalTranslation(board, getAlliance(), false);
+        Translation2d defendTranslation = getLegalTranslation(board, getAlliance().getOpposingAlliance(), true);
 
-        return new ChessMovementInfo(baseTranslation, attackTranslation);
+        return new ChessMovementInfo(attackTranslation, defendTranslation);
 
     }
 

@@ -32,11 +32,11 @@ public class ChessTileActionListener implements ActionListener  {
     public void syncBoard(Board2d<ChessTile> board) {
         for(int i = 0; i < board.getArea(); i++) {
             ChessTile incoming = board.get(i);
-            if(incoming.piece.isEmpty()) {
+            if(incoming.m_piece.isEmpty()) {
                 m_buttonBoard.get(i).setPresentPiece(Optional.empty());
             }
             else {
-                m_buttonBoard.get(i).setPresentPiece(Optional.of(incoming.piece.get()));
+                m_buttonBoard.get(i).setPresentPiece(Optional.of(incoming.m_piece.get()));
             }
         }
     }
@@ -89,7 +89,6 @@ public class ChessTileActionListener implements ActionListener  {
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() instanceof ChessTileJButton button) {
             Translation2d translation = button.getM_translation();
-            System.out.println("Selected " + button.getPresentPieceNameOptional() +  " at " +  translation);
             handlePieceSelection(button);
         }
     }

@@ -107,7 +107,7 @@ public class Translation2d {
     }
 
     public static Translation2d fromInt(Random random, Translation2d min, Translation2d max) {
-        return from(random, Math.round(min.getX()), Math.round(max.getX()), Math.round(min.getY()), Math.round(max.getY()));
+        return fromInt(random, (int)Math.round(min.getX()), (int)Math.round(max.getX()), (int)Math.round(min.getY()), (int)Math.round(max.getY()));
     }
 
     public static Translation2d fromInt(Random random, double maxXMagnitude, double maxYMagnitude) {

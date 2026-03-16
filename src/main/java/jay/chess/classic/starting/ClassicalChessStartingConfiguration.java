@@ -1,17 +1,17 @@
-package jay.chess.engine.starting;
+package jay.chess.classic.starting;
 
 import jay.chess.engine.ChessAlliance;
 import jay.chess.engine.ChessTile;
 import jay.chess.engine.piece.*;
+import jay.chess.engine.starting.ChessStartingConfiguration;
 import jay.util.Board2d;
 import jay.util.Pair;
 import jay.util.math.geom.GeomUtil;
-import jay.util.math.geom.Line2d;
 import jay.util.math.geom.Translation2d;
 
 import java.util.function.Function;
 
-public class ClassicalChessStartingConfiguration extends ChessStartingConfiguration{
+public class ClassicalChessStartingConfiguration extends ChessStartingConfiguration {
 
     /**
      * @apinote white based translations
