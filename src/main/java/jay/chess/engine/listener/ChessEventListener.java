@@ -1,4 +1,9 @@
 package jay.chess.engine.listener;
 
-public interface ChessListener {
+import jay.chess.engine.event.ChessEvent;
+
+public interface ChessEventListener {
+
+    void onEventFired(ChessEvent event);
+
 }
