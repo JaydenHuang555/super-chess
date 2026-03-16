@@ -1,7 +1,6 @@
 package jay.chess.gui;
 
-import jay.chess.engine.ChessAlliance;
-import jay.chess.engine.ChessEngine;
+import jay.chess.classic.engine.ClassicalChessEngine;
 import jay.chess.engine.player.bot.RandomClassicBotPlayer;
 import jay.chess.gui.board.ChessBoardJPanel;
 import jay.chess.gui.player.ChessSwingClassicPlayer;
@@ -12,13 +11,13 @@ import java.awt.event.ActionEvent;
 public class ChessJFrame extends JFrame   {
 
     private final ChessBoardJPanel m_boardPanel;
-    private final ChessEngine m_engine;
+    private final ClassicalChessEngine m_engine;
     private final Timer m_displayingThread;
     private final Thread m_playingThread;
     private final ChessSwingClassicPlayer m_player = new ChessSwingClassicPlayer("test");
 
     public ChessJFrame() {
-        m_engine = new ChessEngine();
+        m_engine = new ClassicalChessEngine();
         m_boardPanel = new ChessBoardJPanel(m_player,8, 8);
         add(m_boardPanel);
         resetEngine();
