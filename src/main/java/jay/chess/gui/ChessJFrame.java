@@ -19,11 +19,9 @@ public class ChessJFrame extends JFrame   {
 
     public ChessJFrame() {
         m_engine = new ChessEngine();
-        resetEngine();
         m_boardPanel = new ChessBoardJPanel(m_player,8, 8);
         add(m_boardPanel);
-        m_boardPanel.syncBoard(m_engine.getBoard());
-        m_boardPanel.syncAlliance(ChessAlliance.WHITE);
+        resetEngine();
         m_playingThread = new Thread(this::periodic);
         m_displayingThread = new Timer(20,this::displayPeriodic);
         m_displayingThread.start();
@@ -37,6 +35,8 @@ public class ChessJFrame extends JFrame   {
     public void resetEngine() {
         m_engine.setPlayer(m_player, new RandomClassicBotPlayer("bot"));
         m_engine.reset();
+        m_boardPanel.syncAlliance(m_player.getAlliance());
+        m_boardPanel.syncBoard(m_engine.getBoard());
     }
 
     private void periodic() {

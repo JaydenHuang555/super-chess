@@ -46,12 +46,11 @@ public class RandomClassicBotPlayer extends ClassicBotPlayer {
 
     @Override
     public ChessMovementInfo play(Board2d<ChessTile> board) {
-        Random next = new Random(board.getArea());
 
-        Translation2d baseTranslation = getLegalTranslation(board, getAlliance(), false);
-        Translation2d attackTranslation = getLegalTranslation(board, getAlliance().getOpposingAlliance(), true);
+        Translation2d attackTranslation = getLegalTranslation(board, getAlliance(), false);
+        Translation2d defendTranslation = getLegalTranslation(board, getAlliance().getOpposingAlliance(), true);
 
-        return new ChessMovementInfo(baseTranslation, attackTranslation);
+        return new ChessMovementInfo(attackTranslation, defendTranslation);
 
     }
 

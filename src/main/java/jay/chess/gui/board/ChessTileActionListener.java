@@ -89,7 +89,6 @@ public class ChessTileActionListener implements ActionListener  {
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() instanceof ChessTileJButton button) {
             Translation2d translation = button.getM_translation();
-            System.out.println("Selected " + button.getPresentPieceNameOptional() +  " at " +  translation);
             handlePieceSelection(button);
         }
     }

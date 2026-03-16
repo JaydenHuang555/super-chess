@@ -29,8 +29,8 @@ public class ChessEngine {
     }
 
     public void setPlayer(Player p1, Player p2) {
-        p1.setAlliance(ChessAlliance.WHITE);
-        p2.setAlliance(ChessAlliance.BLACK);
+        p1.setAlliance(ChessAlliance.BLACK);
+        p2.setAlliance(ChessAlliance.WHITE);
         players = new CyclingPair<>(p1, p2);
     }
 
@@ -48,40 +48,28 @@ public class ChessEngine {
         players.getSecond().reset();
         kingPositionTracker.reset();
         wimningAlliance = Optional.empty();
+        players.seed(player -> player.getAlliance() == ChessAlliance.WHITE);
     }
 
     public void play() {
         Player playing = players.cycle();
-        System.out.println(playing.getName() + " playing");
         while(true) {
             ChessMovementInfo info = playing.play(board);
             if(move(playing.getAlliance(), info.m_attacker, info.m_defender)) {
-                System.out.println("moved");
                 break;
             }
         }
-        System.out.println("Finished Play");
     }
 
     private boolean move(ChessAlliance playingAlliance, Translation2d pieceTranslation, Translation2d targetTranslation) {
-        ChessTile movingTile = board.get(pieceTranslation);
-        ChessTile defendingTile = board.get(targetTranslation);
-        if(movingTile.piece.isPresent()) {
-            ChessPiece movingPiece = movingTile.piece.get();
-            if(movingPiece.canMove(board, pieceTranslation, targetTranslation, defendingTile.piece)) {
-                if(defendingTile.piece.isPresent()) {
-                    ChessPiece tilePiece = defendingTile.piece.get();
-                    if(tilePiece instanceof KingChessPiece) {
-                        if(tilePiece.getAlliance() == playingAlliance) {
-                            return false;
-                        }
-                        else {
-
-                        }
-                    }
-                }
+        ChessTile attacking = board.get(pieceTranslation);
+        ChessTile defender = board.get(targetTranslation);
+        if(attacking.piece.isPresent()) {
+            ChessPiece attackingPiece = attacking.piece.get();
+            if(attackingPiece.canMove(board, pieceTranslation, targetTranslation, defender.piece)) {
+                System.out.println("Last can Move");
                 board.set(pieceTranslation, new ChessTile());
-                board.set(targetTranslation, movingTile);
+                board.set(targetTranslation, attacking);
                 return true;
             }
         }

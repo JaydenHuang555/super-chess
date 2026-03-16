@@ -35,12 +35,11 @@ public class BishopChessPiece extends ChessPiece {
                 x+= delta.getX() < 0 ? -1 : 1;
                 y+= delta.getY() < 0 ? -1 : 1;
                 Translation2d output = currentPoint.plus(x, y);
-                if(output.equals(desiredPoint)) {
+                if(output.equals(currentPoint)) {
                     break;
                 }
                 if(board.get(output).piece.isPresent()) {
                     ChessPiece piece = board.get(output).piece.get();
-                    System.out.println("blocked by " + piece);
                     return false;
                 }
             }

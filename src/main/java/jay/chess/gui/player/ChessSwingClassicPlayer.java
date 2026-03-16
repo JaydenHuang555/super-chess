@@ -33,7 +33,6 @@ public class ChessSwingClassicPlayer extends ClassicPlayer implements PropertyCh
         if(m_infoOptional.isPresent()) {
             ChessMovementInfo infoToReturn = m_infoOptional.get();
             reset();
-            System.out.println("returned value");
             return infoToReturn;
         }
         else {
@@ -43,7 +42,6 @@ public class ChessSwingClassicPlayer extends ClassicPlayer implements PropertyCh
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
-        System.out.println("PROPERTY CHANGED " + evt.getPropertyName());
         if(evt.getPropertyName().compareToIgnoreCase(PROPERTY_DESIRE_MOVE) == 0) {
             if(evt.getNewValue() instanceof ChessMovementInfo info) {
                 m_infoOptional = Optional.of(info);
