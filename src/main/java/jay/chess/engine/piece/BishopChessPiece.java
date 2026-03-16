@@ -4,11 +4,9 @@ import jay.chess.engine.ChessAlliance;
 import jay.chess.engine.ChessTile;
 import jay.util.Board2d;
 import jay.util.math.MathUtil;
-import jay.util.math.geom.GeomUtil;
 import jay.util.math.geom.Line2d;
 import jay.util.math.geom.Translation2d;
 
-import java.awt.geom.Line2D;
 import java.util.Optional;
 
 public class BishopChessPiece extends ChessPiece {
@@ -38,8 +36,8 @@ public class BishopChessPiece extends ChessPiece {
                 if(output.equals(currentPoint)) {
                     break;
                 }
-                if(board.get(output).piece.isPresent()) {
-                    ChessPiece piece = board.get(output).piece.get();
+                if(board.get(output).m_piece.isPresent()) {
+                    ChessPiece piece = board.get(output).m_piece.get();
                     return false;
                 }
             }

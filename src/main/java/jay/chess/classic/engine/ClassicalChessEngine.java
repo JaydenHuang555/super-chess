@@ -67,9 +67,9 @@ public class ClassicalChessEngine extends ChessEngine {
     private boolean move(ChessAlliance playingAlliance, Translation2d pieceTranslation, Translation2d targetTranslation) {
         ChessTile attacking = board.get(pieceTranslation);
         ChessTile defender = board.get(targetTranslation);
-        if(attacking.piece.isPresent()) {
-            ChessPiece attackingPiece = attacking.piece.get();
-            if(attackingPiece.canMove(board, pieceTranslation, targetTranslation, defender.piece)) {
+        if(attacking.m_piece.isPresent()) {
+            ChessPiece attackingPiece = attacking.m_piece.get();
+            if(attackingPiece.canMove(board, pieceTranslation, targetTranslation, defender.m_piece)) {
                 System.out.println("Last can Move");
                 board.set(pieceTranslation, new ChessTile());
                 board.set(targetTranslation, attacking);

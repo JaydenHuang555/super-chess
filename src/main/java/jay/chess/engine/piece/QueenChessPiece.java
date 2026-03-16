@@ -32,7 +32,7 @@ public class QueenChessPiece extends ChessPiece {
             if(outreach.equals(desiredPoint)) {
                 break;
             }
-            if(board.get(outreach).piece.isPresent()) {
+            if(board.get(outreach).m_piece.isPresent()) {
                 return false;
             }
         }

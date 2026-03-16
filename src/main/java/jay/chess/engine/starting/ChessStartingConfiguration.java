@@ -20,9 +20,9 @@ public abstract class ChessStartingConfiguration {
         for(Pair<Translation2d, Function<ChessAlliance, ChessPiece>> whitePieces : getWhite(board)) {
             Translation2d whiteTranslation = whitePieces.getFirst();
             Function<ChessAlliance, ChessPiece> pieceGetter = whitePieces.getSecond();
-            board.get(whiteTranslation).piece = Optional.of(pieceGetter.apply(ChessAlliance.WHITE));
+            board.get(whiteTranslation).m_piece = Optional.of(pieceGetter.apply(ChessAlliance.WHITE));
             Translation2d blackTranslation = GeomUtil.rotateAround(board.getCenterRelativeToIndices(), whiteTranslation);
-            board.get(blackTranslation).piece = Optional.of(pieceGetter.apply(ChessAlliance.BLACK));
+            board.get(blackTranslation).m_piece = Optional.of(pieceGetter.apply(ChessAlliance.BLACK));
         }
     }
 

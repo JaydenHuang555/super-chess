@@ -30,7 +30,7 @@ public class RookChessPiece extends ChessPiece {
                 else {
                     x+= delta.getX() < 0 ? -1 : 1;
                 }
-                if(board.get(currentPoint.plus(x, y)).piece.isPresent()) {
+                if(board.get(currentPoint.plus(x, y)).m_piece.isPresent()) {
                     return false;
                 }
             }

@@ -26,11 +26,11 @@ public class RandomClassicBotPlayer extends ClassicBotPlayer {
 
             ChessTile tile = board.get(translation);
 
-            if(tile.piece.isEmpty()) {
+            if(tile.m_piece.isEmpty()) {
                 return acceptEmpty;
             }
 
-            ChessPiece piece = tile.piece.get();
+            ChessPiece piece = tile.m_piece.get();
             return piece.getAlliance() == legalAlliance;
         };
 
